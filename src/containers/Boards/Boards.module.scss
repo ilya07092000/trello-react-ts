@@ -1,0 +1,17 @@
+.content {
+  min-height: 100vh;
+  background: rgb(182, 239, 243);
+  padding-top: 100px;
+}
+
+.contentInner {
+  margin: 0 -10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  padding: 10px;
+  display: flex;
+  width: 33.3333%;
+}
