@@ -1,0 +1,19 @@
+.createBtn {
+  display: block;
+  width: 100%;
+  background: rgb(71, 80, 212);
+  padding: 30px 10px;
+  font-size: 20px;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: transform 0.1s linear;
+  &:hover {
+    transform: scale(1.05) rotate(1deg);
+  }
+  &:active {
+    transform: scale(1) rotate(0);
+  }
+}
