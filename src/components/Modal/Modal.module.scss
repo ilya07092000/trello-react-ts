@@ -22,8 +22,8 @@
 
 .close {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 5px;
+  right: 5px;
   width: 40px;
   height: 40px;
   cursor: pointer;
@@ -52,6 +52,15 @@
     border-radius: inherit;
     transform: rotate(90deg);
   }
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 40px;
+  text-align: center;
+  padding: 0 40px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 @keyframes modal-open {
