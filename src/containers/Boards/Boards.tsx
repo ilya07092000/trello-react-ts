@@ -1,12 +1,14 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
 import Header from '../../components/Header/Header';
 import CreateBoardBtn from '../../components/CreateBoardBtn/CreateBoardBtn';
 import BoardLink from '../../components/BoardLink/BoardLink';
+import boardsStore from '../../store/boards';
 
-import { boards } from '../../mock/boards';
 import styles from './Boards.module.scss';
 
 const Boards = () => {
+
   return (
     <>
       <Header />
@@ -16,7 +18,7 @@ const Boards = () => {
             <div className={styles.col}>
               <CreateBoardBtn onCreate={() => console.log('fds')} />
             </div>
-            {boards.map((board) => (
+            {boardsStore.boards.map((board) => (
               <div key={board.id} className={styles.col}>
                 <BoardLink
                   link="/"
@@ -32,4 +34,4 @@ const Boards = () => {
   );
 };
 
-export default Boards;
+export default observer(Boards);
