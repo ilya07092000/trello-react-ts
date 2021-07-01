@@ -20,3 +20,10 @@
 .secondary {
   background: rgb(173, 147, 147);
 }
+
+.transparent {
+  border: 1px solid #fff;
+  background: transparent;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
