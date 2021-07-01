@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import Header from '../../components/Header/Header';
 import CreateBoardBtn from '../../components/CreateBoardBtn/CreateBoardBtn';
 import BoardLink from '../../components/BoardLink/BoardLink';
 import boardsStore from '../../store/boards';
+import BoardsModal from '../../components/BoardsModal/BoardsModal';
 
 import styles from './Boards.module.scss';
 
 const Boards = () => {
+  const [createModal, setCreateModal] = useState<boolean>(false);
 
   return (
     <>
@@ -16,7 +18,7 @@ const Boards = () => {
         <div className="container">
           <div className={styles.contentInner}>
             <div className={styles.col}>
-              <CreateBoardBtn onCreate={() => console.log('fds')} />
+              <CreateBoardBtn onCreate={() => setCreateModal(true)} />
             </div>
             {boardsStore.boards.map((board) => (
               <div key={board.id} className={styles.col}>
@@ -30,6 +32,10 @@ const Boards = () => {
           </div>
         </div>
       </div>
+
+      {createModal ? (
+        <BoardsModal title="Create" onClose={() => setCreateModal(false)} />
+      ) : null}
     </>
   );
 };
