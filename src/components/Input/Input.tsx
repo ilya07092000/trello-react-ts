@@ -7,7 +7,12 @@ type InputProps = {
 };
 
 const Input = React.forwardRef(({ placeholder }: InputProps, ref: any) => (
-  <input className={styles.input} type="text" placeholder={placeholder} />
+  <input
+    className={styles.input}
+    type="text"
+    placeholder={placeholder}
+    ref={ref}
+  />
 ));
 
 export default Input;
