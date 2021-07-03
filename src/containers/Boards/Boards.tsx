@@ -11,6 +11,8 @@ import styles from './Boards.module.scss';
 
 const Boards = () => {
   const [createModal, setCreateModal] = useState<boolean>(false);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [editBoardId, setEditBoardId] = useState<number>(0);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const createBoard = () => {
@@ -26,6 +28,34 @@ const Boards = () => {
     }
   };
 
+  const openEditModal = (e: React.MouseEvent<HTMLLinkElement>, id: number) => {
+    e.preventDefault();
+    setEditModal(true);
+    setEditBoardId(id);
+
+    const board: any = boardsStore.boards.find((b) => b.id === id);
+
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.value = board.title;
+      }
+    });
+  };
+
+  const editBoard = () => {
+    if (inputRef.current) {
+      boardsStore.editBoard(editBoardId, inputRef.current.value);
+    }
+
+    setEditModal(false);
+  };
+
+  const deleteBoard = (e: React.MouseEvent<HTMLLinkElement>, id: number) => {
+    e.preventDefault();
+
+    boardsStore.deleteBoard(id);
+  };
+
   return (
     <>
       <Header />
@@ -37,7 +67,19 @@ const Boards = () => {
             </div>
             {boardsStore.boards.map((board) => (
               <div key={board.id} className={styles.col}>
-                <BoardLink link="/" title={board.title} date={board.date} />
+                <BoardLink
+                  onEdit={(e: React.MouseEvent<HTMLLinkElement>, id: number) =>
+                    openEditModal(e, id)
+                  }
+                  onDelete={(
+                    e: React.MouseEvent<HTMLLinkElement>,
+                    id: number
+                  ) => deleteBoard(e, id)}
+                  link="/"
+                  title={board.title}
+                  date={board.date}
+                  id={board.id}
+                />
               </div>
             ))}
           </div>
@@ -47,9 +89,20 @@ const Boards = () => {
       {createModal ? (
         <BoardsModal
           onCreate={createBoard}
+          type="create"
           inputRef={inputRef}
           title="Create"
           onClose={() => setCreateModal(false)}
+        />
+      ) : null}
+
+      {editModal ? (
+        <BoardsModal
+          onCreate={editBoard}
+          type="edit"
+          inputRef={inputRef}
+          title="Edit"
+          onClose={() => setEditModal(false)}
         />
       ) : null}
     </>

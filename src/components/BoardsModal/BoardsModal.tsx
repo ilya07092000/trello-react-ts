@@ -7,17 +7,28 @@ import styles from './BoardsModal.module.scss';
 
 type BoardsModalProps = {
   title: string;
+  type: string;
   onClose: React.MouseEventHandler<HTMLDivElement | HTMLButtonElement>;
   onCreate: React.MouseEventHandler<HTMLButtonElement>;
   inputRef: React.Ref<HTMLInputElement | null>;
 };
 
-const BoardsModal = ({ title, onClose, inputRef, onCreate }: BoardsModalProps) => (
+const BoardsModal = ({
+  title,
+  type,
+  onClose,
+  inputRef,
+  onCreate,
+}: BoardsModalProps) => (
   <Modal title={title} size="sm" onClose={onClose}>
     <Input ref={inputRef} placeholder="Board name" />
     <div className={styles.btnsWrap}>
       <div className={styles.btnsCol}>
-        <Button onClick={onCreate}>create</Button>
+        {type === 'create' ? (
+          <Button onClick={onCreate}>create</Button>
+        ) : (
+          <Button onClick={onCreate}>edit</Button>
+        )}
       </div>
       <div className={styles.btnsCol}>
         <Button type="secondary" onClick={onClose}>

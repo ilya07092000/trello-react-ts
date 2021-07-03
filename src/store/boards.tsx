@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { boards } from '../mock/boards';
+import { IBoard } from '../types';
 
 class Boards {
   boards = boards;
@@ -8,9 +9,18 @@ class Boards {
     makeAutoObservable(this);
   }
 
-  addBoard(board: any) {
+  addBoard(board: IBoard) {
     this.boards.push(board);
   }
-};
+
+  editBoard(id: number, title: string) {
+    const currBoard: any = this.boards.find((b) => b.id === id);
+    currBoard.title = title;
+  }
+
+  deleteBoard(id: number) {
+    this.boards = this.boards.filter((b) => b.id !== id);
+  }
+}
 
 export default new Boards();
