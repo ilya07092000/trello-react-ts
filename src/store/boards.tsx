@@ -10,7 +10,11 @@ class Boards {
   }
 
   addBoard(board: IBoard) {
-    this.boards.push(board);
+    const newBoard = {
+      ...board,
+      columns: []
+    }
+    this.boards.push(newBoard);
   }
 
   editBoard(id: number, title: string) {
