@@ -58,7 +58,6 @@ const Boards = () => {
 
   return (
     <>
-      <Header />
       <div className={styles.content}>
         <div className="container">
           <div className={styles.contentInner}>
