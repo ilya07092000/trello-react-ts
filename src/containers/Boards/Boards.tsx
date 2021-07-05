@@ -75,7 +75,7 @@ const Boards = () => {
                     e: React.MouseEvent<HTMLLinkElement>,
                     id: number
                   ) => deleteBoard(e, id)}
-                  link="/"
+                  link={`/board/${board.id}`}
                   title={board.title}
                   date={board.date}
                   id={board.id}

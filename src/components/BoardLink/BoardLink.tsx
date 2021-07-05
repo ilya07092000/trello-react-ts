@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 
 import styles from './BoardLink.module.scss';
@@ -13,7 +14,7 @@ type BoardLinkProps = {
 };
 
 const BoardLink = ({ title, date, link, id, onEdit, onDelete }: BoardLinkProps) => (
-  <a className={styles.link} href={link}>
+  <Link className={styles.link} to={link}>
     <p className={styles.name}>{title}</p>
     <div className={styles.footer}>
       <div className={styles.btnsWrap}>
@@ -30,7 +31,7 @@ const BoardLink = ({ title, date, link, id, onEdit, onDelete }: BoardLinkProps) 
       </div>
       <p className={styles.date}>{date}</p>
     </div>
-  </a>
+  </Link>
 );
 
 export default BoardLink;
