@@ -25,6 +25,10 @@ class Boards {
   deleteBoard(id: number) {
     this.boards = this.boards.filter((b) => b.id !== id);
   }
+
+  getById(id: number) {
+    return this.boards.find((b) => b.id === id);
+  } 
 }
 
 export default new Boards();
