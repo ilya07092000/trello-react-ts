@@ -29,6 +29,14 @@ class Boards {
   getBoardById(id: number) {
     return this.boards.find((b) => b.id === id);
   } 
+
+  addNewTask(boardId: number, columnId: number, task: object) {
+    const boardById = this.getBoardById(boardId);
+    const gg = boardById!.columns!.find((col: any) => col.id === columnId);
+    gg.list.push(task);
+    console.log(gg);
+     
+  }
 }
 
 export default new Boards();
