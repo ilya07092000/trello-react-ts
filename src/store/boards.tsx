@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { boards } from '../mock/boards';
-import { IBoard } from '../types';
+import { IBoard, ITask } from '../types';
 
 class Boards {
   boards = boards;
@@ -10,11 +10,7 @@ class Boards {
   }
 
   addBoard(board: IBoard) {
-    const newBoard = {
-      ...board,
-      columns: []
-    }
-    this.boards.push(newBoard);
+    this.boards.push(board);
   }
 
   editBoard(id: number, title: string) {
@@ -26,16 +22,17 @@ class Boards {
     this.boards = this.boards.filter((b) => b.id !== id);
   }
 
-  getBoardById(id: number) {
+  getBoardById(id: number): IBoard | undefined {
     return this.boards.find((b) => b.id === id);
-  } 
+  }
 
-  addNewTask(boardId: number, columnId: number, task: object) {
-    const boardById = this.getBoardById(boardId);
-    const gg = boardById!.columns!.find((col: any) => col.id === columnId);
-    gg.list.push(task);
-    console.log(gg);
-     
+  addNewTask(boardId: number, columnId: number, task: ITask) {
+    const boardById: IBoard | undefined = this.getBoardById(boardId);
+
+    if (boardById) {
+      const col = boardById.columns.find((col: any) => col.id === columnId);
+      col.list.push(task);
+    }
   }
 }
 

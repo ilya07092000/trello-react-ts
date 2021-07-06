@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { observer } from 'mobx-react-lite';
-import Header from '../../components/Header/Header';
 import CreateBoardBtn from '../../components/CreateBoardBtn/CreateBoardBtn';
 import BoardLink from '../../components/BoardLink/BoardLink';
 import boardsStore from '../../store/boards';
@@ -15,12 +14,13 @@ const Boards = () => {
   const [editBoardId, setEditBoardId] = useState<number>(0);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const createBoard = () => {
+  const createBoard = (): void => {
     if (inputRef.current && inputRef.current.value.trim()) {
       const board: IBoard = {
         id: Date.now(),
         title: inputRef.current.value,
         date: new Date().toLocaleDateString(),
+        columns: [],
       };
 
       boardsStore.addBoard(board);
@@ -33,10 +33,10 @@ const Boards = () => {
     setEditModal(true);
     setEditBoardId(id);
 
-    const board: any = boardsStore.boards.find((b) => b.id === id);
+    const board: IBoard | undefined = boardsStore.getBoardById(id);
 
     setTimeout(() => {
-      if (inputRef.current) {
+      if (inputRef.current && board) {
         inputRef.current.value = board.title;
       }
     });
@@ -46,13 +46,11 @@ const Boards = () => {
     if (inputRef.current) {
       boardsStore.editBoard(editBoardId, inputRef.current.value);
     }
-
     setEditModal(false);
   };
 
   const deleteBoard = (e: React.MouseEvent<HTMLLinkElement>, id: number) => {
     e.preventDefault();
-
     boardsStore.deleteBoard(id);
   };
 
