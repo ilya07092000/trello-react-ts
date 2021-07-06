@@ -17,3 +17,22 @@ body {
   padding: 0 20px;
   margin: 0 auto;
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(131, 131, 196) rgb(156, 119, 48);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(176, 178, 182);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(47, 163, 86);
+  border-radius: 20px;
+  border: 1px solid rgb(243, 234, 218);
+}

@@ -32,14 +32,14 @@ const Board = () => {
     <div className={styles.wrapper}>
       <p className={styles.pageTitle}>{board.title}</p>
       <div className={styles.content}>
-        <div className={styles.contentItem}>
-          <CreateCol onCreate={(title: string) => createCol(title)} />
-        </div>
         {board.columns
           ? board.columns.map((col: any) => (
               <BoardCol key={col.id} data={col} boardId={board.id} />
             ))
           : null}
+        <div className={styles.contentItem}>
+          <CreateCol onCreate={(title: string) => createCol(title)} />
+        </div>
       </div>
     </div>
   );
