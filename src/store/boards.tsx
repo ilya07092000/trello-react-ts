@@ -26,7 +26,7 @@ class Boards {
     this.boards = this.boards.filter((b) => b.id !== id);
   }
 
-  getById(id: number) {
+  getBoardById(id: number) {
     return this.boards.find((b) => b.id === id);
   } 
 }
