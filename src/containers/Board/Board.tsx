@@ -18,12 +18,22 @@ const Board = () => {
     setBoard(() => board);
   }, []);
 
+  const createCol = (title: string) => {
+    const col = {
+      id: Date.now(),
+      title: title,
+      list: [],
+    };
+
+    boardStore.createNewCol(board.id, col);
+  };
+
   return (
     <div className={styles.wrapper}>
       <p className={styles.pageTitle}>{board.title}</p>
       <div className={styles.content}>
         <div className={styles.contentItem}>
-          <CreateCol />
+          <CreateCol onCreate={(title: string) => createCol(title)} />
         </div>
         {board.columns
           ? board.columns.map((col: any) => (

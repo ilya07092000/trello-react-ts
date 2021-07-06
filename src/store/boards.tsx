@@ -34,6 +34,11 @@ class Boards {
       col.list.push(task);
     }
   }
+
+  createNewCol(boardId: number, col: any) {
+    const boardById: IBoard | undefined = this.getBoardById(boardId);
+    boardById?.columns.push(col);
+  }
 }
 
 export default new Boards();
