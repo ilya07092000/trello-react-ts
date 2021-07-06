@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './Header.module.scss';
 
@@ -7,7 +8,9 @@ const Header = () => (
     <div className="container">
       <div className={styles.headerInner}>
         <nav>
-          <a className={styles.link} href="/">Home</a>
+          <Link className={styles.link} to="/">
+            Home
+          </Link>
         </nav>
         <p className={styles.name}>App</p>
         {new Date().toLocaleString()}
