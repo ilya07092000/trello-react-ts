@@ -9,3 +9,10 @@ export interface ITask {
   id: number,
   text: string;
 };
+
+export interface IBoardCol {
+  id: number,
+  title: string,
+  date: string,
+  list: ITask[]
+};
