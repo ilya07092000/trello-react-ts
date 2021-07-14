@@ -28,6 +28,16 @@ const Boards = () => {
     }
   };
 
+  const openCreateModal = () => {
+    setCreateModal(true);
+
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    });
+  };
+
   const openEditModal = (e: React.MouseEvent<HTMLLinkElement>, id: number) => {
     e.preventDefault();
     setEditModal(true);
@@ -37,6 +47,7 @@ const Boards = () => {
 
     setTimeout(() => {
       if (inputRef.current && board) {
+        inputRef.current.focus();
         inputRef.current.value = board.title;
       }
     });
@@ -51,7 +62,9 @@ const Boards = () => {
 
   const deleteBoard = (e: React.MouseEvent<HTMLLinkElement>, id: number) => {
     e.preventDefault();
-    boardsStore.deleteBoard(id);
+
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('Are you sure?')) boardsStore.deleteBoard(id);
   };
 
   return (
@@ -60,7 +73,7 @@ const Boards = () => {
         <div className="container">
           <div className={styles.contentInner}>
             <div className={styles.col}>
-              <CreateBoardBtn onOpen={() => setCreateModal(true)} />
+              <CreateBoardBtn onOpen={openCreateModal} />
             </div>
             {boardsStore.boards.map((board) => (
               <div key={board.id} className={styles.col}>

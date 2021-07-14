@@ -57,7 +57,7 @@ const BoardCol = ({
       >
         <p className={styles.colTitle}>{data.title}</p>
         <div className={styles.addTask}>
-          <Input placeholder="123" ref={inputRef} />
+          <Input placeholder="Add new task" ref={inputRef} />
           <div className={styles.addBtnWrap}>
             <Button onClick={addNewTask}>Add</Button>
           </div>
